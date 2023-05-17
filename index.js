@@ -6,28 +6,43 @@ function validateForm(){
     if( (firstName.length < 2) || (lastName.length<2)){
         alert("Not a valid name");
     } 
-    // if(!NaN(firstName)){
-    //     alert("Please enter a valid Name");
-
-    // }
+    //Password validation
     var password=document.getElementById("password").value;
     var confirmPassword=document.getElementById("confirm password").value;
+    if(password==""){
+        alert("Password cannot be empty");
+    }
+    if(password.length<5 || password.length>20){
+        alert("Password must be of length greater than 5 an less than 20");
+    }
     if(password!=confirmPassword){
         alert("Password is incorrect");
     }
-    var number=document.getElementById('number').value;
-    if( number.length != 10 ){
-        alert("Enter a valid phone number")
-    }
+   
+    //Email validation
     var email=document.getElementById("email").value;
-    if(email.includes("@")){
-        if(email.indexOf("@")<=0      ){
-            alert("Not a valid email")
-        }
-        if((email.charAt(email.length-4)!=".") && email.charAt(email.length-3)!="."){
-            alert("Not a  valid email");
-        }
+    var pattern= /^[A-Za-z._]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}$/;
+    if(!pattern.test(email)){
+        alert("Enter a valid email");
+
     }
+    //Phone number validation
+    var phonenumber=document.getElementById("number").value;
+    var numberPattern=/^[789]{1}[0-9]{9}$/;
+    if(phonenumber==""){
+        alert("Phone number cannot be empty");
+    }
+    if(isNaN(phonenumber)){
+        alert("Enter a valid phone number");
+    }
+    if(phonenumber.length!=10){
+        alert("Phone nnumber can only be of 10 digits");
+    }
+    if(!phonenumber.test(numberPattern)){
+        alert("Enter a valid phone number");
+
+    }
+    
     console.log(`First Name is ${firstName} last name is ${lastName} my email is ${email} my password is ${password}`);
     alert("Congratilations !! Your data is saved");
 
